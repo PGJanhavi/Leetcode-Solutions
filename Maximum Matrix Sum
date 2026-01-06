@@ -1,0 +1,31 @@
+class Solution {
+    public long maxMatrixSum(int[][] matrix) 
+    {
+        int c = 0;
+        long s =0;
+        int m = Math.abs(matrix[0][0]);
+        for(int i=0;i<matrix.length;i++)
+        {
+            for(int j=0;j<matrix[0].length;j++)
+            { 
+                if(matrix[i][j]<0)
+            {
+                c++;
+            }
+                int v = Math.abs(matrix[i][j]);
+                s+=v;
+                if(v<m)
+                {
+                    m = v;
+                }
+            }
+        }
+        if(c%2 != 0)
+        {
+            s = s - 2L*m;
+        }
+        return s;
+        }
+    }
+
+    
