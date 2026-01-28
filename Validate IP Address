@@ -1,0 +1,48 @@
+class Solution {
+    public boolean ipv4(String queryIP)
+    {
+        String arr[] = queryIP.split("\\.",-1);
+        if(arr.length != 4)return false;
+        for(String s : arr)
+        {
+            if(s.length() == 0 || s.length() > 3) return false;
+            if(s.length()> 1 && s.charAt(0) == '0') return false;
+            
+            for(char c : s.toCharArray())
+            {
+                if(!Character.isDigit(c)) return false;
+            }
+            int n = Integer.parseInt(s);
+            if(n<0 || n>255)return false;
+        }
+        return true;
+    }
+     public boolean ipv6(String queryIP)
+    {
+        String arr1[] = queryIP.split(":",-1);
+        if(arr1.length != 8) return false;
+         for(String s1 : arr1)
+        {
+            if(s1.length() == 0 ||s1.length()>4) return false;
+            for(char c1 : s1.toCharArray())
+            {
+                if(!((Character.isDigit(c1)) || ((c1 >= 'a' && c1<='f') || (c1>='A' && c1<= 'F')))) return false;
+            }
+        }
+        return true;
+    }
+
+    public String validIPAddress(String queryIP) 
+    {
+        if(queryIP.contains("."))
+        {
+            return ipv4(queryIP)? "IPv4" : "Neither";
+        }
+        
+        if(queryIP.contains(":"))
+        {
+            return ipv6(queryIP)? "IPv6" : "Neither";
+        }
+        return "Neither";
+    }
+}
