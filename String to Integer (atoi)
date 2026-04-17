@@ -1,0 +1,42 @@
+class Solution {
+    public int myAtoi(String s) {
+        int i = 0;
+        int n = s.length();
+        while(i<n && s.charAt(i) ==' ')
+        {
+            i++;
+        }
+        int si = 1;
+        if(i<n && (s.charAt(i)=='-'|| s.charAt(i)=='+'))
+        {
+            if(s.charAt(i)=='-')
+            {
+                si = -1;
+            }
+            i++;
+        }
+        int d =0;
+        int r=0;
+        while(i<n && s.charAt(i) >='0' && s.charAt(i) <='9')
+        {
+                d = s.charAt(i)-'0';
+                if(r>(Integer.MAX_VALUE-d)/10)
+                {
+                    if(si == 1)
+                    {
+                        return Integer.MAX_VALUE;
+                    }
+                    else
+                    {
+                      return Integer.MIN_VALUE;  
+                    }
+                }
+                r = r*10 +d;
+                i++;
+
+        }
+        return r*si;
+
+       
+    }
+}
